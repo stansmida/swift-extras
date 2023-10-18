@@ -1,8 +1,11 @@
-@inline(__always)
-public func areEqual<T: Equatable, U: Equatable>(lhs: T, rhs: U) -> Bool {
-    if let rhs = rhs as? T {
-        lhs == rhs
-    } else {
-        false
+public extension Equatable {
+
+    @inline(__always)
+    func isEqual(to rhs: some Equatable) -> Bool {
+        if let rhs = rhs as? Self {
+            self == rhs
+        } else{
+            false
+        }
     }
 }
