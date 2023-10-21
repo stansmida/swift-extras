@@ -1,6 +1,6 @@
 public extension String {
 
-    @inline(__always)
+    @inlinable
     var lowercasedFirst: String {
         guard let first else {
             return self
@@ -8,7 +8,7 @@ public extension String {
         return "\(first.lowercased())\(dropFirst())"
     }
 
-    @inline(__always)
+    @inlinable
     var uppercasedFirst: String {
         guard let first else {
             return self
