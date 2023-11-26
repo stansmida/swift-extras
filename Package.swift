@@ -23,5 +23,10 @@ let package = Package(
             name: "SwiftExtras",
             dependencies: []
         ),
+
+        .testTarget(
+            name: "SwiftExtrasTests",
+            dependencies: ["SwiftExtras"]
+        )
     ]
 )
