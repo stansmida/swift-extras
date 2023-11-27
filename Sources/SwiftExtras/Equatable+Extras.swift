@@ -8,6 +8,15 @@ public extension Equatable {
             false
         }
     }
+
+    @inlinable
+    func isEqual(to rhs: (any Equatable)?) -> Bool {
+        if let rhs {
+            isEqual(to: rhs)
+        } else{
+            false
+        }
+    }
 }
 
 public extension Optional where Wrapped == any Equatable {

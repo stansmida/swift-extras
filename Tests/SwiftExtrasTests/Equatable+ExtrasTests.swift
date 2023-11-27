@@ -24,6 +24,20 @@ final class Equatable_ExtrasTests: XCTestCase {
         XCTAssertFalse(y.isEqual(to: x))
     }
 
+    func testIsEqualToOptional_whenEqual_shouldEqual() {
+        let x: any Equatable = "a"
+        let y: (any Equatable)? = "a"
+        XCTAssertTrue(x.isEqual(to: y))
+    }
+
+    func testIsEqualToOptional_whenNotEqual_shouldNotEqual() {
+        let x: any Equatable = "a"
+        let y: (any Equatable)? = "b"
+        let z: (any Equatable)? = nil
+        XCTAssertFalse(x.isEqual(to: y))
+        XCTAssertFalse(x.isEqual(to: z))
+    }
+
     func testOptionalIsEqualToEquatable_whenEqual_shouldEqual() {
         let x: (any Equatable)? = "a"
         let y: any Equatable = "a"
