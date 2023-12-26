@@ -7,7 +7,7 @@ public protocol SourceProvenanced {
 
 public func sourceProvenance<
     FileID: ExpressibleByStringLiteral,
-    Line: ExpressibleByIntegerLiteral,
+    Line: ExpressibleByIntegerLiteral
 >(
     fileID: FileID,
     line: Line
