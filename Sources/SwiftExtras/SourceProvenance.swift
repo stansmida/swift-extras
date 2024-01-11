@@ -8,7 +8,7 @@ public protocol SourceProvenanced {
 /// - Note: `#fileID`, `#line` and `#column` macros [allows some type flexibility](https://github.com/apple/swift/blob/f08f86c71617bacbc61f69ce842e284b27036598/stdlib/public/core/Macros.swift#L33).
 /// This type "enforces" type consistency and requires `StaticString`
 /// for `fileID` and `UInt` for `line` and `column` (common in Swift).
-public struct SourceProvenance: CustomStringConvertible {
+public struct SourceProvenance: CustomStringConvertible, Hashable {
 
     public init(_ fileID: StaticString, _ line: UInt, _ column: UInt? = nil) {
         self.fileID = fileID
@@ -26,5 +26,17 @@ public struct SourceProvenance: CustomStringConvertible {
         } else {
             "\(fileID):\(line)"
         }
+    }
+
+    public static func == (lhs: SourceProvenance, rhs: SourceProvenance) -> Bool {
+        "\(lhs.fileID)" == "\(rhs.fileID)"
+        && lhs.line == rhs.line
+        && lhs.column == rhs.column
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine("\(fileID)")
+        hasher.combine(line)
+        hasher.combine(column)
     }
 }
